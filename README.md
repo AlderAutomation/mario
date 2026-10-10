@@ -26,3 +26,8 @@ Git clone the repo and and run the startup.sh/
 ## How to Run (After Release)  
 
 Run in browser at Itchio. _Link TBA_
+
+
+## References  
+
+Art: www.kenney.nl  
