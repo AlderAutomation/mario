@@ -8,6 +8,8 @@ find_package(raylib REQUIRED)
 
 add_executable(main 
 	src/main.c
+	src/Player.c
+	src/Components.c  
 )
 
 target_link_libraries(main PRIVATE raylib)
@@ -16,4 +18,3 @@ target_compile_features(main PRIVATE c_std_17)
 
 target_include_directories(main PRIVATE ${PROJECT_SOURCE_DIR}/include)
 
-target_link_libraries(main PRIVATE m)
