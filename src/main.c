@@ -90,9 +90,23 @@ int main() {
 		 		// drawTimer 
 				DrawText(TextFormat("%d", (int)ceil(countdownTimer)), GetScreenWidth()/2, 10, 24, GREEN); 
 
+				if (IsKeyPressed(playerOne.input.pauseKey)) {
+					currentScene = PAUSE; 
+				}
+
 			break;
 
 			case PAUSE: 
+				ClearBackground(BLACK); 
+
+				char pauseText[8] = "Paused"; 
+				int pauseTextWidth = MeasureText(pauseText, 96); 
+				DrawText(pauseText, GetScreenWidth()/2 - pauseTextWidth/2, GetScreenHeight()/2, 96, GREEN); 
+
+				if (IsKeyPressed(playerOne.input.pauseKey)) {
+					currentScene = GAMEPLAY; 
+				}
+
 
 			break; 
 

@@ -5,7 +5,7 @@
 
 
 #include "Components.h"
-
+#include "raylib.h"
 
 cInput inputInit(void) {
 	return (cInput) {
