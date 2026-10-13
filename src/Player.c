@@ -15,10 +15,14 @@ ePlayer playerInit(void) {
 		}, 
 		.movement = {
 			.velocity = {0.0f, 0.0f}, 
-			.speed = 20.0f
+			.speed = 10.0f
 		}, 
 		.input = inputInit(), 
-		.playerTexture.texture = LoadTexture("./assets/Art/Player/p1_stand.png"), 
+		.playerTexture = {
+			.texture = LoadTexture("./assets/Art/Player/p1_stand.png"), 
+			.width = 66, 
+			.height = 92
+		},
 		.score = 0 
 	};
 }

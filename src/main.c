@@ -18,18 +18,21 @@ typedef enum {
 	OPTIONS
 } Scene; 
 
+bool isLeft = false; 
 
 int main() {
 
 	InitWindow(1920, 1080, "Mario Bros Ripoff"); 
+
+	SetTargetFPS(30); 
 
 	ePlayer playerOne = playerInit(); 
 
 	Scene currentScene = MENU; 
 
 	// 3 minute countdown timer 
-//	float countdownTimer = 180.0f; 
-	float countdownTimer = 3.0f; 
+	float countdownTimer = 180.0f; 
+//	float countdownTimer = 3.0f; 
 
 	while (!WindowShouldClose()) {
 
@@ -82,7 +85,6 @@ int main() {
 					currentScene = GAMEOVER; 
 				}
 		
-				DrawTexture(playerOne.playerTexture.texture , playerOne.trans.position.x, playerOne.trans.position.y, RED); 
 
 				// drawScore 
 				DrawText(TextFormat("Score: %d", playerOne.score), 10, 10, 24, GREEN); 
@@ -90,9 +92,35 @@ int main() {
 		 		// drawTimer 
 				DrawText(TextFormat("%d", (int)ceil(countdownTimer)), GetScreenWidth()/2, 10, 24, GREEN); 
 
+				// remove this and the boolean. move the draw into the actual controls and the the ghost is only visible while moving
+				if (!isLeft) {
+					DrawTextureRec(playerOne.playerTexture.texture, 
+							(Rectangle){0, 0, playerOne.playerTexture.width, playerOne.playerTexture.height},
+							(Vector2){playerOne.trans.position.x, playerOne.trans.position.y}, 
+							RED);
+				} else {
+					DrawTextureRec(playerOne.playerTexture.texture, 
+							(Rectangle){0, 0, -playerOne.playerTexture.width, playerOne.playerTexture.height},
+							(Vector2){playerOne.trans.position.x, playerOne.trans.position.y}, 
+							RED);
+				}
+
 				if (IsKeyPressed(playerOne.input.pauseKey)) {
 					currentScene = PAUSE; 
 				}
+
+				if (IsKeyDown(playerOne.input.leftKey)) {
+					isLeft = true; 
+
+					playerOne.trans.position.x -= playerOne.movement.speed; 
+				}
+
+				if (IsKeyDown(playerOne.input.rightKey)) {
+ 					isLeft = false; 
+
+					playerOne.trans.position.x += playerOne.movement.speed; 
+				}
+
 
 			break;
 

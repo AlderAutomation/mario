@@ -32,7 +32,9 @@ typedef struct {
 } cScore; 
 
 typedef struct {
-	Texture2D texture; 
+	Texture2D texture;
+	int width; 
+	int height; 
 } cTexture;
 
 cInput inputInit(void); 
