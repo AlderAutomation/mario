@@ -7,8 +7,8 @@
 #include "Player.h"
 #include "Components.h" 
 
-Player playerInit(void) {
-	return (Player) {
+ePlayer playerInit(void) {
+	return (ePlayer) {
 		.trans = {
 			.position = {100.0f, 100.0f}, 
 			.size = {16.0f, 16.0f}
@@ -17,6 +17,8 @@ Player playerInit(void) {
 			.velocity = {0.0f, 0.0f}, 
 			.speed = 20.0f
 		}, 
-		.controller = controllerInit() 
+		.input = inputInit(), 
+		.playerTexture.texture = LoadTexture("./assets/Art/Player/p1_stand.png"), 
+		.score = 0 
 	};
 }

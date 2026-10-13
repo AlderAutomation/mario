@@ -7,26 +7,35 @@
 #ifndef COMPONENTS_H 
 #define COMPONENTS_H 
 
-#include <raylib.h> 
+#include "raylib.h"
 
 typedef struct {
 	Vector2 position; 
 	Vector2 size; 
-} EntTransform; 
+	Vector2 scale; 
+} cEntTransform; 
 
 typedef struct {
 	Vector2 velocity; 
 	float speed; 
-} Movement; 
+} cMovement; 
 
 typedef struct {
 	int rightKey; 
 	int leftKey; 
 	int jumpKey; 
 	int pauseKey; 
-} Controller; 
+} cInput; 
 
-Controller controllerInit(void); 
+typedef struct {
+	int score; 
+} cScore; 
+
+typedef struct {
+	Texture2D texture; 
+} cTexture;
+
+cInput inputInit(void); 
 
 #endif 
 

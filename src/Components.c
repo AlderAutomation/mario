@@ -7,8 +7,8 @@
 #include "Components.h"
 
 
-Controller controllerInit(void) {
-	return (Controller) {
+cInput inputInit(void) {
+	return (cInput) {
 		.rightKey = KEY_D, 
 		.leftKey = KEY_A, 
 		.jumpKey = KEY_SPACE, 

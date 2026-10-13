@@ -5,7 +5,6 @@
 
 
 #include <raylib.h>
-#include <stdio.h>
 
 #include "Player.h" 
 
@@ -25,15 +24,23 @@ int main() {
 
 	InitWindow(1920, 1080, "Mario Bros Ripoff"); 
 
-	Player playerOne = playerInit(); 
+	ePlayer playerOne = playerInit(); 
 
 
 	while (!WindowShouldClose()) {
 
 		BeginDrawing(); 
 
-		ClearBackground(SKYBLUE); 
+		ClearBackground(BLACK); 
 		
+		DrawTexture(playerOne.playerTexture.texture , playerOne.trans.position.x, playerOne.trans.position.y, RED); 
+
+		// drawScore 
+		DrawText(TextFormat("Score: %d", playerOne.score), 10, 10, 24, GREEN); 
+
+	 	// drawTimer 
+		DrawText("Time", GetScreenWidth()/2, 10, 24, GREEN); 
+
 		EndDrawing(); 
 	
 	}

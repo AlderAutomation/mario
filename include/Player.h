@@ -9,12 +9,13 @@
 #include "Components.h" 
 
 typedef struct {
-	EntTransform trans; 
-	Movement movement; 
-	Controller controller;  
+	cEntTransform trans; 
+	cMovement movement; 
+	cInput input;  
+	cTexture playerTexture; 
+	cScore score; 
+} ePlayer; 
 
-} Player; 
-
-Player playerInit(void); 
+ePlayer playerInit(void); 
 
 #endif 

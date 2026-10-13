@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15...4.4)
 
-project(NotMineCraft VERSION 1.0 DESCRIPTION "Voxel Game That is Deffinately Not Another Minecraft Clone" LANGUAGES C)
+project(NotMario VERSION 1.0 DESCRIPTION "A platforming gaming in style of Mario" LANGUAGES C)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 

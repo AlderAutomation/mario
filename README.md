@@ -30,4 +30,4 @@ Run in browser at Itchio. _Link TBA_
 
 ## References  
 
-Art: www.kenney.nl  
+Art: [kenney.nl](www.kenney.nl) found at [Open Game Art](https://opengameart.org/content/platformer-art-deluxe)  
