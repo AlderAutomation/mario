@@ -7,11 +7,15 @@
 #include "Player.h"
 #include "Components.h" 
 
-ePlayer playerInit(void) {
+ePlayer playerInit(int x, int y) {
 	return (ePlayer) {
 		.trans = {
-			.position = {100.0f, 100.0f}, 
-			.size = {16.0f, 16.0f}
+			.position = {
+				.x = x, 
+				.y = y
+			}, 
+			.size = {66.0f, 92.0f}, 
+			.scale = 1.0f
 		}, 
 		.movement = {
 			.velocity = {0.0f, 0.0f}, 
@@ -23,6 +27,7 @@ ePlayer playerInit(void) {
 			.width = 66, 
 			.height = 92
 		},
-		.score = 0 
+		.score = 0, 
+		.isCollision = true
 	};
 }

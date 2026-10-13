@@ -14,8 +14,9 @@ typedef struct {
 	cInput input;  
 	cTexture playerTexture; 
 	cScore score; 
+	cCollision isCollision; 
 } ePlayer; 
 
-ePlayer playerInit(void); 
+ePlayer playerInit(int x, int y); 
 
 #endif 

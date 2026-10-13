@@ -8,6 +8,7 @@
 #include "raylib.h"
 
 #include "Player.h" 
+#include "Platform.h"
 
 // Enums of scenes 
 typedef enum {
@@ -26,8 +27,17 @@ int main() {
 
 	SetTargetFPS(30); 
 
-	ePlayer playerOne = playerInit(); 
+	ePlayer playerOne = playerInit(100, GetScreenHeight()-200); 
 
+	ePlatform platforms[(int)ceil((GetScreenWidth()+140)/70.0)]; 
+	
+	int platformCount = sizeof(platforms) / sizeof(platforms[0]); 
+
+	for (int i = 0 ; i < platformCount ; i ++) {
+		ePlatform ground = platformInit(i*70, GetScreenHeight()-70); 
+		platforms[i] = ground; 
+	}
+	
 	Scene currentScene = MENU; 
 
 	// 3 minute countdown timer 
@@ -121,6 +131,9 @@ int main() {
 					playerOne.trans.position.x += playerOne.movement.speed; 
 				}
 
+				for (int i = 0 ; i < platformCount ; i++ ) {
+					DrawTexture(platforms[i].platformTexture.texture , platforms[i].trans.position.x, platforms[i].trans.position.y, WHITE); 
+				}
 
 			break;
 

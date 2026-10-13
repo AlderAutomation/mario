@@ -37,6 +37,10 @@ typedef struct {
 	int height; 
 } cTexture;
 
+typedef struct {
+	bool collision; 
+} cCollision; 
+
 cInput inputInit(void); 
 
 #endif 

@@ -10,6 +10,7 @@ add_executable(main
 	src/main.c
 	src/Player.c
 	src/Components.c  
+	src/Platform.c
 )
 
 target_link_libraries(main PRIVATE raylib)
