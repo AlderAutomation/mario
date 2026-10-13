@@ -20,3 +20,5 @@ activity:
 ---
 - 3? minute count down 
 - top center? 
+- Trigger Game over on sompletion 
+- 

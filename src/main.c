@@ -3,8 +3,9 @@
 //
 // A mario style game to try to learn compostion better 
 
+#include <math.h>
 
-#include <raylib.h>
+#include "raylib.h"
 
 #include "Player.h" 
 
@@ -18,16 +19,24 @@ typedef enum {
 } Scene; 
 
 
-
-
 int main() {
 
 	InitWindow(1920, 1080, "Mario Bros Ripoff"); 
 
 	ePlayer playerOne = playerInit(); 
 
+	// 3 minute countdown timer 
+	float countdownTimer = 180.0f; 
 
 	while (!WindowShouldClose()) {
+
+		float dt = GetFrameTime(); 
+
+		if (countdownTimer > 0.0f) {
+			countdownTimer -= dt; 
+		} else {
+			countdownTimer = 0.0f; 
+		}
 
 		BeginDrawing(); 
 
@@ -39,7 +48,7 @@ int main() {
 		DrawText(TextFormat("Score: %d", playerOne.score), 10, 10, 24, GREEN); 
 
 	 	// drawTimer 
-		DrawText("Time", GetScreenWidth()/2, 10, 24, GREEN); 
+		DrawText(TextFormat("%d", (int)ceil(countdownTimer)), GetScreenWidth()/2, 10, 24, GREEN); 
 
 		EndDrawing(); 
 	
