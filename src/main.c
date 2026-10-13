@@ -25,15 +25,54 @@ int main() {
 
 	ePlayer playerOne = playerInit(); 
 
-	Scene currentScene = GAMEPLAY; 
+	Scene currentScene = MENU; 
 
 	// 3 minute countdown timer 
+//	float countdownTimer = 180.0f; 
 	float countdownTimer = 3.0f; 
 
 	while (!WindowShouldClose()) {
 
+		BeginDrawing(); 
+
 		switch (currentScene) { 
+			case MENU: 
+				ClearBackground(BLACK); 
+
+				// Title 
+				char title[10] = "Not Mario"; 
+				int titleWidth = MeasureText(title, 128); 
+				DrawText(title, GetScreenWidth()/2-titleWidth/2, 100, 128, GREEN); 
+
+				// menu 
+				char newGameText[9] = "NEW GAME"; 
+				char optionsText[8] = "OPTIONS";
+				int newGameTextWidth = MeasureText(newGameText, 48); 
+				int optionsTextwidth = MeasureText(optionsText, 48); 
+				DrawText(newGameText, GetScreenWidth()/2-newGameTextWidth/2, GetScreenHeight()/2-40, 48, GREEN); 
+				DrawText(optionsText, GetScreenWidth()/2-optionsTextwidth/2, GetScreenHeight()/2+40, 48, GREEN); 
+
+				// menu rect buttons for mouse detection 
+				Rectangle newGameButton = {GetScreenWidth()/2-newGameTextWidth/2, GetScreenHeight()/2-40, newGameTextWidth, 48}; 
+				Rectangle optionsButton = {GetScreenWidth()/2-optionsTextwidth/2, GetScreenHeight()/2+40, optionsTextwidth, 48}; 
+
+				// get mouse pos 
+				Vector2 mouse = GetMousePosition(); 
+
+				// Check for mouse click on buttons 
+				if (CheckCollisionPointRec(mouse, newGameButton) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+					currentScene = GAMEPLAY; 
+				}
+
+				if (CheckCollisionPointRec(mouse, optionsButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+					currentScene = GAMEPLAY; // temp; TODO change to Options
+				}
+
+			break; 
+
 			case GAMEPLAY: 
+				ClearBackground(BLACK); 
+
 				float dt = GetFrameTime(); 
 	
 				if (countdownTimer > 0.0f) {
@@ -42,10 +81,6 @@ int main() {
 					countdownTimer = 0.0f; 
 					currentScene = GAMEOVER; 
 				}
-
-				BeginDrawing(); 
-
-				ClearBackground(BLACK); 
 		
 				DrawTexture(playerOne.playerTexture.texture , playerOne.trans.position.x, playerOne.trans.position.y, RED); 
 
@@ -57,17 +92,29 @@ int main() {
 
 			break;
 
+			case PAUSE: 
+
+			break; 
+
 			case GAMEOVER: 
-				BeginDrawing();
+				ClearBackground(MAROON); 
 
-				ClearBackground(RED); 
+				char youDiedText[11] = "YOU DIED!"; 
+				char restartText[24] = "Press any key to retry"; 
 
-				DrawText("You Died!", GetScreenWidth()/2, GetScreenHeight()/2, 96, GREEN); 
+				int youDiedTextWidth = MeasureText(youDiedText, 96); 
+				int restartTextWidth = MeasureText(restartText, 48); 
+
+				DrawText(youDiedText, GetScreenWidth()/2-youDiedTextWidth/2, GetScreenHeight()/2, 96, GREEN); 
+				DrawText(restartText, GetScreenWidth()/2-restartTextWidth/2, GetScreenHeight()/2+100, 48, GREEN); 
+			break; 
+
+			case OPTIONS: 
+
 			break; 
 
 		}
 
-		
 
 		EndDrawing(); 
 	
