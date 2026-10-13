@@ -49,15 +49,15 @@ int main() {
 
 				// menu 
 				char newGameText[9] = "NEW GAME"; 
-				char optionsText[8] = "OPTIONS";
+//				char optionsText[8] = "OPTIONS";
 				int newGameTextWidth = MeasureText(newGameText, 48); 
-				int optionsTextwidth = MeasureText(optionsText, 48); 
+//				int optionsTextwidth = MeasureText(optionsText, 48); 
 				DrawText(newGameText, GetScreenWidth()/2-newGameTextWidth/2, GetScreenHeight()/2-40, 48, GREEN); 
-				DrawText(optionsText, GetScreenWidth()/2-optionsTextwidth/2, GetScreenHeight()/2+40, 48, GREEN); 
+//				DrawText(optionsText, GetScreenWidth()/2-optionsTextwidth/2, GetScreenHeight()/2+40, 48, GREEN); 
 
 				// menu rect buttons for mouse detection 
 				Rectangle newGameButton = {GetScreenWidth()/2-newGameTextWidth/2, GetScreenHeight()/2-40, newGameTextWidth, 48}; 
-				Rectangle optionsButton = {GetScreenWidth()/2-optionsTextwidth/2, GetScreenHeight()/2+40, optionsTextwidth, 48}; 
+//				Rectangle optionsButton = {GetScreenWidth()/2-optionsTextwidth/2, GetScreenHeight()/2+40, optionsTextwidth, 48}; 
 
 				// get mouse pos 
 				Vector2 mouse = GetMousePosition(); 
@@ -67,9 +67,9 @@ int main() {
 					currentScene = GAMEPLAY; 
 				}
 
-				if (CheckCollisionPointRec(mouse, optionsButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-					currentScene = GAMEPLAY; // temp; TODO change to Options
-				}
+//				if (CheckCollisionPointRec(mouse, optionsButton) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+//					currentScene = GAMEPLAY; // temp; TODO change to Options
+//				}
 
 			break; 
 
@@ -109,13 +109,13 @@ int main() {
 					currentScene = PAUSE; 
 				}
 
-				if (IsKeyDown(playerOne.input.leftKey)) {
+				if (IsKeyDown(playerOne.input.leftKey) && playerOne.trans.position.x > 0) {
 					isLeft = true; 
 
 					playerOne.trans.position.x -= playerOne.movement.speed; 
 				}
 
-				if (IsKeyDown(playerOne.input.rightKey)) {
+				if (IsKeyDown(playerOne.input.rightKey) && playerOne.trans.position.x < GetScreenWidth()-playerOne.playerTexture.width) {
  					isLeft = false; 
 
 					playerOne.trans.position.x += playerOne.movement.speed; 

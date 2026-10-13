@@ -15,7 +15,7 @@ ePlayer playerInit(void) {
 		}, 
 		.movement = {
 			.velocity = {0.0f, 0.0f}, 
-			.speed = 10.0f
+			.speed = 20.0f
 		}, 
 		.input = inputInit(), 
 		.playerTexture = {
