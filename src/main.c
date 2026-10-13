@@ -25,30 +25,49 @@ int main() {
 
 	ePlayer playerOne = playerInit(); 
 
+	Scene currentScene = GAMEPLAY; 
+
 	// 3 minute countdown timer 
-	float countdownTimer = 180.0f; 
+	float countdownTimer = 3.0f; 
 
 	while (!WindowShouldClose()) {
 
-		float dt = GetFrameTime(); 
+		switch (currentScene) { 
+			case GAMEPLAY: 
+				float dt = GetFrameTime(); 
+	
+				if (countdownTimer > 0.0f) {
+					countdownTimer -= dt; 
+				} else {
+					countdownTimer = 0.0f; 
+					currentScene = GAMEOVER; 
+				}
 
-		if (countdownTimer > 0.0f) {
-			countdownTimer -= dt; 
-		} else {
-			countdownTimer = 0.0f; 
+				BeginDrawing(); 
+
+				ClearBackground(BLACK); 
+		
+				DrawTexture(playerOne.playerTexture.texture , playerOne.trans.position.x, playerOne.trans.position.y, RED); 
+
+				// drawScore 
+				DrawText(TextFormat("Score: %d", playerOne.score), 10, 10, 24, GREEN); 
+
+		 		// drawTimer 
+				DrawText(TextFormat("%d", (int)ceil(countdownTimer)), GetScreenWidth()/2, 10, 24, GREEN); 
+
+			break;
+
+			case GAMEOVER: 
+				BeginDrawing();
+
+				ClearBackground(RED); 
+
+				DrawText("You Died!", GetScreenWidth()/2, GetScreenHeight()/2, 96, GREEN); 
+			break; 
+
 		}
 
-		BeginDrawing(); 
-
-		ClearBackground(BLACK); 
 		
-		DrawTexture(playerOne.playerTexture.texture , playerOne.trans.position.x, playerOne.trans.position.y, RED); 
-
-		// drawScore 
-		DrawText(TextFormat("Score: %d", playerOne.score), 10, 10, 24, GREEN); 
-
-	 	// drawTimer 
-		DrawText(TextFormat("%d", (int)ceil(countdownTimer)), GetScreenWidth()/2, 10, 24, GREEN); 
 
 		EndDrawing(); 
 	
